@@ -1,17 +1,32 @@
 {%extends 'base.html'%}
 {% load bootstrap3 %}
 {% block content %}
-{{block.super}}
-<div class="container">
-    <p>sgf</p>
-{% for img in image %}
-<p>{{img.image_name}}</p>
-<img src="{{img.image.url}}" alt="image">
-<p>{{img.profile}}</p>
-<p>{{img.caption}}</p>
+<!DOCTYPE html>
+<html lang="en">
 
-{% empty %}
-<h4>NO IMAGE</h4>
-{% endfor %}
-</div>
-{% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+
+        {% for ima in image %}
+        <p>{{ima.image_name}}</p>
+        <img src="{{ima.image.url}}" alt="image">
+        <p>{{ima.profile}}</p>
+        <p>{{ima.caption}}</p>
+
+        {% empty %}
+        <h4>NO IMAGE</h4>
+        {% endfor %}
+    </div>
+    {% endblock %}
+</body>
+
+</html>
