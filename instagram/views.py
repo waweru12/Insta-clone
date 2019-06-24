@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .models import Image,Profile
@@ -27,7 +27,7 @@ def profile(request,id):
     current_user = request.user
     user = User.objects.get(id=id)
     try:
-      profile = Profile.objects.get(name_id=id)
+      profile = Profile.objects.filter(name_id=id)
     except ObjectDoesNotExist:
       return redirect() 
     return render(request, 'profile.html', {"image":image, "user":user, "profile":profile})

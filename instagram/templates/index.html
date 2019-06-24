@@ -15,10 +15,9 @@
 
 
     <div class="container">
-
         {% for ima in image %}
         <p>{{ima.image_name}}</p>
-        <img src="{{ima.image.url}}" alt="image">
+        <img src="{{ima.image.url}}" alt="image" style="height: 300px; width:300px;">
         <p>{{ima.profile}}</p>
         <p>{{ima.caption}}</p>
 
