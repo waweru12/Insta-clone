@@ -34,3 +34,14 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
+
+class Comments(models.Model):
+    comment=models.TextField(max_length=50)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    images=models.IntegerField()
+
+    def __str__(self):
+        return self.comment
+    
+    def save_comments(self):
+        self.save()
