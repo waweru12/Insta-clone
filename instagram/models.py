@@ -34,34 +34,3 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
-
-class Comments(models.Model):
-    comment=models.TextField(max_length=50)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    images=models.IntegerField()
-
-    def __str__(self):
-        return self.comment
-    
-    def save_comments(self):
-        self.save()
-
-class Followers(models.Model):
-    user = models.CharField(max_length=20, default="")
-    follower = models.CharField(max_length=20, default="")
-
-    def __str__(self):
-        return self.follower
-    
-    def save_followers(self):
-        self.save()
-
-class PhotoLikes(models.Model):
-    postid = models.IntegerField()
-    liker = models.CharField(max_length=20)
-
-    def __str__(self):
-        return self.liker
-    
-    def save_likes(self):
-        self.save()

@@ -8,6 +8,7 @@ urlpatterns=[
     url('^$',views.home,name = 'home'),
     url(r'^search/',views.search_results,name='search'),
     url(r'^profile/(\d+)',views.profile,name='profile'),
+    url(r'image/comment/(\d+)/s',views.comments,name='comment'),  
 ]
 
 if settings.DEBUG:  

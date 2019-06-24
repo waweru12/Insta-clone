@@ -17,22 +17,25 @@ def search_results(request):
     if 'profile' in request.GET and request.GET["profile"]:
         search_term = request.GET.get("profile")
         searched_profiles = User.objects.filter(username__icontains=search_term)
+        profile = Profile.objects.all()
         message = f"{search_term}"
-        return render(request, 'search.html',{"message":message, "profile":searched_profiles})
+        return render(request, 'search.html',{"message":message, "profile":searched_profiles, "profile":profile})
     else:
         message = "You haven't searched for any term."
         return render(request, 'search.html', {"message":message})
 
+@login_required(login_url="/accounts/login/")
 def profile(request,id):
     image = Image.objects.filter(id=id)
     current_user = request.user
     user = User.objects.get(id=id)
+    profile = Profile.objects.all()
     try:
-      profile = Profile.objects.filter(name_id=id)
+      profile3 = Profile.objects.filter(name_id=id)
     except ObjectDoesNotExist:
       return redirect() 
-    return render(request, 'profile.html', {"image":image, "user":user, "profile":profile})
-    
+    return render(request, 'profile.html', {"image":image, "user":user, "profile":profile3, "profile":profile})
+
 @login_required(login_url="/accounts/login/")
 def comments(request,image_id):
     try:
