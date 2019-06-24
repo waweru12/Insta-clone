@@ -40,7 +40,22 @@
         </div>
         <div class="container">
             <hr>
-          
+            <h4 class="text-center">Posts</h4>
+            <hr>
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                {% for image in image %}
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 ">
+                    <img style="margin:13px;height:200px;width:200px;" src="{{image.image.url}}" class="img-responsive"
+                        alt="Image">
+                </div>
+                {% endfor %}
+                <a href="">
+                    <span
+                        style="margin:13px;font-size: 50px;border:1px solid rgb(230, 226, 226);padding:75px ;color:black"
+                        class="glyphicon glyphicon-plus"></span>
+                </a>
+            </div>
             <div class="col-md-2"></div>
         </div>
     </body>
