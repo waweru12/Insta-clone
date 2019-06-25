@@ -37,10 +37,17 @@ class Image(models.Model):
 
 
 class Comment(models.Model):
-   image = models.ForeignKey('Image')
-   user = models.ForeignKey(User)
-   comment = models.CharField(max_length=100)
-   posted_on = models.DateTimeField(auto_now=True)
+    image = models.ForeignKey('Image')
+    user = models.ForeignKey(User)
+    comment = models.CharField(max_length=100)
+    posted_on = models.DateTimeField(auto_now=True)
 
-   def __str__(self):
+    def __str__(self):
        return self.comment
+
+
+    def save_comment(self):
+        self.save()
+    
+    def delete_comment(self):
+        self.delete()
