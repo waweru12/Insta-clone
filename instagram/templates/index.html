@@ -15,32 +15,37 @@
 
 </html>
 <div class="container">
-{% for ima in image %}
-<!-- Card -->
-<div class="card">
     
-    <p>{{ima.image_name}}</p>
+    
+    {% for ima in image %}
+    <a style="text-decoration:none;color:black" href="profile/{{image.user.id}}">
+        <p><img class="post" src="{{image.profile.profile_pic.url}}"><strong>{{image.user}}</strong>
+    </a>
+    <!-- Card -->
+    <div class="card">
 
-    <!-- Card image -->
-    <img class="img-responsive" src="{{ima.image.url}}" alt="image" style="height:inherit; width:inherit;">
+        <p>{{ima.image_name}}</p>
 
-    <!-- Card content -->
-    <div class="card-body">
+        <!-- Card image -->
+        <img class="img-responsive" src="{{ima.image.url}}" alt="image" style="height:inherit; width:inherit;">
 
-
-        <!-- Button -->
-        <a href="/comment/{{ima.id}}" class="btn btn-primary">Comments</a>
-        <a href="{%url 'profile' user.id%}" class="btn btn-primary">Profile</a>
-        <p>{{ima.profile}}</p>
-        <p>{{ima.caption}}</p>
+        <!-- Card content -->
+        <div class="card-body">
 
 
-        {% empty %}
-        <h4>NO IMAGE</h4>
-        {% endfor %}
+            <!-- Button -->
+            <a href="/comment/{{ima.id}}" class="btn btn-primary">Comments</a>
+            <a href="{%url 'profile' user.id%}" class="btn btn-primary">Profile</a>
+            <p>{{ima.profile}}</p>
+            <p>{{ima.caption}}</p>
+
+
+            {% empty %}
+            <h4>NO IMAGE</h4>
+            {% endfor %}
+        </div>
+        {% endblock %}
     </div>
-    {% endblock %}
-</div>
     </body>
 
     </html>
