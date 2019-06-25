@@ -5,7 +5,7 @@ from .models import Image,Profile,Comment
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from .forms import NewImageForm, EditProfile,UpdateProfile
+from .forms import NewImageForm, EditProfile,UpdateProfile,CommentForm
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -56,10 +56,7 @@ def comment(request,c_id):
    comments = Comment.objects.filter(image_id=c_id)
    current_user = request.user
    current_image = Image.objects.get(id=c_id)
-   try:
-       likes = Like.objects.filter(post_id=c_id).get(user_id=request.user)
-   except ObjectDoesNotExist:
-       likes =0
+   
    if request.method == 'POST':
        form = CommentForm(request.POST)
        if form.is_valid():
@@ -70,4 +67,4 @@ def comment(request,c_id):
            return redirect(home)
    else:
        form = CommentForm()
-   return render(request,'comments.html',{"form":form,'comments':comments,"image":current_image,"user":current_user,'likes':likes})
+   return render(request,'comments.html',{"form":form,'comments':comments,"image":current_image,"user":current_user})

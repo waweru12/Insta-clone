@@ -16,7 +16,8 @@
     <div class="container">
         {% for ima in image %}
         <p>{{ima.image_name}}</p>
-        <img src="{{ima.image.url}}" alt="image" style="height:inherit; width:inherit;">
+         <img src="{{ima.image.url}}" alt="image" style="height:inherit; width:inherit;">
+        <span class="menu"><a style="text-decoration:none;color:black"href="/comment/{{ima.id}}">...</a></span></p>
         <p>{{ima.profile}}</p>
         <p>{{ima.caption}}</p>
 
