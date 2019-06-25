@@ -16,14 +16,14 @@
       <img src="{{pro.profile_pic.url}}" class="img-circle" alt="image" style="height:200px; width:200px;">
     </div>
     <div lass="col-md-6">
-      <h2 style="text-align: center;font-family: 'Righteous', cursive;font-size: 60px">{{pro.name}}</h2>
+      <h2 style="text-align: center;font-family: 'Righteous', cursive;font-size: 62px">{{pro.name}}</h2>
       <br><br>
       {% autoescape on %}
-      <p style="text-align: center; font-family: 'Iceland', cursive;font-size: 30px">{{pro.bio| safe}}</p>
+      <p style="text-align: center; font-family: 'Iceland', cursive;font-size: 33px">{{pro.bio| safe}}</p>
       {% endautoescape %}
     </div>
-    <a class="btn btn-default" style="background-size: 50px" href="{% url 'profile' user.id %}">Visit profile</a>
     <div class="col-md-2"></div>
+    <a class="btn btn-default"  href="{% url 'profile' user.id %}">Visit profile</a>
     <hr>
     {% endfor %}
     {% endif %}
