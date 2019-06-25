@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from .models import Image,Profile
+from .models import Image,Profile,Comment
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.contrib.auth.models import User
@@ -50,3 +50,24 @@ def upload(request):
    else:
        form = NewImageForm()
    return render(request, 'new-image.html', {"form": form})
+
+  
+def comment(request,c_id):
+   comments = Comment.objects.filter(image_id=c_id)
+   current_user = request.user
+   current_image = Image.objects.get(id=c_id)
+   try:
+       likes = Like.objects.filter(post_id=c_id).get(user_id=request.user)
+   except ObjectDoesNotExist:
+       likes =0
+   if request.method == 'POST':
+       form = CommentForm(request.POST)
+       if form.is_valid():
+           comment = form.save(commit=False)
+           comment.image = current_image
+           comment.user = current_user
+           comment.save()
+           return redirect(home)
+   else:
+       form = CommentForm()
+   return render(request,'comments.html',{"form":form,'comments':comments,"image":current_image,"user":current_user,'likes':likes})
